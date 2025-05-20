@@ -4,7 +4,8 @@ import ArgumentParser
 struct PasswordGen: ParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "pg",
-        abstract: "A macOS command-line password generator"
+        abstract: "A macOS command-line password generator",
+        version: "0.1.0"
     )
 
     @Flag(help: "Display the raw generated password in stdout (not recommended)")
@@ -25,7 +26,7 @@ struct PasswordGen: ParsableCommand {
             let clipboard = ClipboardManager()
             clipboard.copyToClipboard(password)
             print("Password has been copied to the clipboard.")
-            
+
             // Display the password (masked or raw)
             let displayPassword = unsafe ? password : String(repeating: "*", count: password.count)
             print("Generated Password: \(displayPassword)")

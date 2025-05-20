@@ -1,6 +1,12 @@
 # PasswordGen (`pg`)
 
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/patflynn90/PasswordGen/releases/tag/v0.1.0)
+
 A macOS command-line password generator that creates strong, secure passwords and automatically copies them to your clipboard.
+
+## Version
+
+Current version: 0.1.0
 
 ## Features
 
