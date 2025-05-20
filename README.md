@@ -40,16 +40,16 @@ Show the generated password in the terminal (not recommended for sensitive envir
 pg --unsafe
 ```
 
-Generate a password without copying to clipboard (will show the password):
+Generate a password without copying to clipboard (raw output to stdout only):
 
 ```
-pg --nocopy
+pg --raw
 ```
 
 ### Command-line Options
 
 - `--unsafe`: Display the raw generated password in stdout (not recommended)
-- `--nocopy`: Do not copy password to system clipboard (implies --unsafe)
+- `--raw`: Raw password output to stdout (no clipboard, no extra output)
 
 ## How It Works
 

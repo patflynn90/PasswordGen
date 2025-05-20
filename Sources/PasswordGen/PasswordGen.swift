@@ -10,25 +10,25 @@ struct PasswordGen: ParsableCommand {
     @Flag(help: "Display the raw generated password in stdout (not recommended)")
     var unsafe: Bool = false
 
-    @Flag(help: "Do not copy password to system clipboard (implies --unsafe)")
-    var nocopy: Bool = false
+    @Flag(help: "Raw password output to stdout (no clipboard, no extra output)")
+    var raw: Bool = false
 
     func run() throws {
         let generator = PasswordGenerator()
         let password = try generator.generatePassword()
 
-        // Determine whether to show the raw password
-        let shouldShowRawPassword = unsafe || nocopy
-        
-        // Copy to clipboard unless nocopy is specified
-        if !nocopy {
+        if raw {
+            // Raw mode: only the password goes to stdout, no clipboard
+            print(password)
+        } else {
+            // Copy to clipboard in all non-raw modes
             let clipboard = ClipboardManager()
             clipboard.copyToClipboard(password)
             print("Password has been copied to the clipboard.")
+            
+            // Display the password (masked or raw)
+            let displayPassword = unsafe ? password : String(repeating: "*", count: password.count)
+            print("Generated Password: \(displayPassword)")
         }
-        
-        // Display the password (masked or raw)
-        let displayPassword = shouldShowRawPassword ? password : String(repeating: "*", count: password.count)
-        print("Generated password: \(displayPassword)")
     }
 }
